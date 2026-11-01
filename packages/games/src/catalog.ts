@@ -45,6 +45,7 @@ export const gameCatalog: GameCatalogEntry[] = [
   { id: 'hivemind', name: 'Hivemind', version: '0.1.0', flagship: true, description: 'Answer the prompt like everyone else; matching the crowd is the whole game.', pool: { deckKind: 'prompt', placeholderBlock: 'hivemind' } },
   { id: 'most-likely', name: 'Most Likely To', version: '0.1.0', flagship: true, description: "Vote a player for each 'most likely to...' prompt; the room's pick is revealed.", pool: { deckKind: 'prompt', placeholderBlock: 'mostlikely' } },
   { id: 'ballpark', name: 'Ballpark', version: '0.1.0', flagship: true, description: 'Numeric trivia where the closest guess wins. Get in the ballpark.', pool: { deckKind: 'quiz', placeholderBlock: 'ballpark', answerColumns: ['answer', 'value'] } },
+  { id: 'geoguess', name: 'GeoGuess', version: '0.1.0', flagship: true, description: 'A street somewhere in Europe. Drop your pin on the map; the closest guess wins.' },
   { id: 'faker', name: 'Faker', version: '0.1.0', flagship: true, description: 'Everyone gets a secret word except one faker. Give a clue, then sniff out who is bluffing.', pool: { deckKind: 'card', placeholderBlock: 'faker', answerColumns: ['word', 'secret'] } },
   { id: 'truth-or-share', name: 'Truth or Share', version: '0.1.0', flagship: true, description: 'Put someone in the spotlight with a prompt, answer or pass, and the room reacts. Pick well and you score too.', pool: { deckKind: 'prompt', placeholderBlock: 'spotlight' } },
   { id: 'quiz-or-die', name: 'Quiz or Die', version: '0.1.0', flagship: true, description: 'A deadly quiz show. Answer right and walk free; answer wrong and meet the host in the Cellar. The last one out the door survives.', pool: { deckKind: 'quiz', placeholderBlock: 'cellar', answerColumns: ['correct', 'answer', 'belong'] } },
@@ -102,6 +103,8 @@ export const REDACTION_RULES: Record<string, Record<string, unknown>> = {
   fibvote: { truth: '', options: [] },
   // Ballpark's true number is the answer key: null it before serving to a non-owner.
   ballpark: { answer: null },
+  // GeoGuess: the real spot is the answer key; strip it before serving to a non-owner.
+  geo: { lat: null, lng: null, place: '' },
   // Faker's secret word is delivered privately per-player; strip it from the public
   // config so a non-owner (or a spectator) never reads the word from a saved game.
   faker: { word: '' },

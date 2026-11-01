@@ -19,6 +19,7 @@
     "@doot-games/sdk": "workspace:*",
     "@doot-games/themes": "workspace:*",
     "@doot-games/ui": "workspace:*",
+    "leaflet": "1.9.4",
     "obscenity": "^0.4.6",
     "three": "0.184.0"
   },
@@ -26,6 +27,7 @@
     "vue": "^3.5.0"
   },
   "devDependencies": {
+    "@types/leaflet": "1.9.20",
     "@types/three": "0.184.1"
   }
 }

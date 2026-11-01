@@ -5,6 +5,7 @@
 import type { GamePlugin } from '@doot-games/sdk'
 import { backronym } from './games/backronym'
 import { ballpark } from './games/ballpark'
+import { geoguess } from './games/geoguess'
 import { bingo } from './games/bingo'
 import { buzzer } from './games/buzzer'
 import { callIt } from './games/call-it'
@@ -62,6 +63,7 @@ export const builtinPlugins: GamePlugin[] = [
   hivemind,
   mostLikely,
   ballpark,
+  geoguess,
   faker,
   truthOrShare,
   quizOrDie,
