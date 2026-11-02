@@ -23,7 +23,8 @@ function toggle(card: string) {
 
 <template>
   <div class="hand">
-    <p class="black" aria-live="polite">{{ preview }}</p>
+    <!-- The generic renderer already shows the black card; this preview appears once a card is played. -->
+    <p v-if="chosen.length" class="black" aria-live="polite">{{ preview }}</p>
     <p class="hint">
       {{ content.pick > 1 ? `Pick ${content.pick} cards, in order.` : 'Pick your best card.' }}
     </p>
@@ -68,11 +69,16 @@ function toggle(card: string) {
 }
 .cards {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 8px;
 }
 .card {
   position: relative;
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  white-space: normal;
+  overflow-wrap: anywhere;
   min-height: 84px;
   text-align: left;
   font: inherit;
