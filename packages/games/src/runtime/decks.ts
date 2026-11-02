@@ -174,6 +174,15 @@ export function secretFromRow(row: Record<string, string | number>): { category:
   return c && w ? { category: c, word: w } : null
 }
 
+/** Card Clash: a row is a black card (`call`) or a white card (`response`). A row with
+ *  both (a two-column sheet filled side by side) keeps the call; the game's buildConfig
+ *  also reads `response` from every row, so no white card is lost. */
+export function cardFromRow(row: Record<string, string | number>): { call: string; response: string } | null {
+  const call = pick(row, ['call', 'black', 'prompt', 'question'])
+  const response = pick(row, ['response', 'white', 'answer', 'card'])
+  return call || response ? { call, response } : null
+}
+
 /** Fib Finder: a trivia question (with an optional `___` blank) + its true answer. */
 export function factFromRow(row: Record<string, string | number>): { question: string; truth: string } | null {
   const question = pick(row, ['question', 'prompt', 'q'])
